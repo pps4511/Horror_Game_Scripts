@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityStandardAssets.Characters.FirstPerson;
 public class KeyPad : MonoBehaviour
 {
-    public string curPassword = "12345";    //비밀번호
+    public string curPassword = "2451";    //비밀번호
     public string input;    //입력되는 비밀번호를 넣을 변수
     public bool onTrigger;  // boxcollider에 trigger를 판별하기 위한 bool변수
     public bool keypadScreen;   //trigger를 통해서 판별하여 keypadScreen을 온 또는 오프 를 판별 하는 bool 변수
@@ -59,24 +59,27 @@ public class KeyPad : MonoBehaviour
             GUI.Box(new Rect(0, 0, 200, 25), "Press 'E' to open keypad"); //GUI 박스가 화면 왼쪽 상단에 Press 'E' to open keypad 나타나게함
             if (Input.GetKeyDown(KeyCode.E))    //E키를 누르면
             {
-                                        
+
                 keypadScreen = true;   // keypadScreen 활성화 하고 onTrigger를 비활성화
-                onTrigger = false;
+                onTrigger = true;
                 PlayerObject.GetComponent<FirstPersonController>().enabled = false; //비밀번호를 풀때 캐릭터가 움직이지 않게 하기 위해서 비활성화 시킴
                 Cursor.lockState = CursorLockMode.None; //커서의 상태를 Lock시킴
                 Cursor.visible = true;  // 마우스 커서를 보이게 하여 비밀번호를 풀때 화면이 움직이지 않음
             }
 
-            else if (Input.GetButtonDown("Cancel")) //ESC버튼을 누르면
+           else if (Input.GetKey(KeyCode.S)) //s키버튼을 누르면(캐릭터가 뒤로 물러나면)
             {
-                keypadScreen = false;   
+                
+                keypadScreen = false;
                 onTrigger = true;
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
                 PlayerObject.GetComponent<FirstPersonController>().enabled = true;
-                
-                
+
+
             }
+
+            
         }
 
         if (keypadScreen)   // keypadScreen이 활성화 된다면

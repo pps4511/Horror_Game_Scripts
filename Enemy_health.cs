@@ -39,14 +39,14 @@ public class Enemy_health : MonoBehaviour {
     IEnumerator Die()
     {   
         yield return new WaitForSeconds(2.45f);
-        Debug.Log("뒤졌다. 이말이야");
+        Debug.Log("죽음");
         Destroy(gameObject);
     }
 
     IEnumerator Damaging()
     {
         yield return new WaitForSeconds(2.0f);
-        Debug.Log("맞았다 이말이야");
+        Debug.Log("맞는중");
     }
     
 }

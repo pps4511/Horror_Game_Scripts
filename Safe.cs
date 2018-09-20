@@ -70,7 +70,9 @@ public class Safe : MonoBehaviour {
 
             gameObject.layer = 0; 
             UnlockSafe();
-
+            Quaternion targetRotationOpen = Quaternion.Euler(0, 0, doorOpenAngle);
+            transform.localRotation = Quaternion.Slerp(transform.localRotation, targetRotationOpen, Smooth * Time.deltaTime);
+            StartCoroutine(WaitFor(1.25f));
         }
 	}
 
@@ -80,8 +82,18 @@ public class Safe : MonoBehaviour {
 
         Quaternion targetRotationOpen = Quaternion.Euler(0, 0, doorOpenAngle); 
         transform.localRotation = Quaternion.Slerp(transform.localRotation, targetRotationOpen, Smooth * Time.deltaTime);
+        StartCoroutine(WaitFor(0.5f));
     }
 
+
+    IEnumerator WaitFor(float time)
+    {
+        Debug.Log("WaitFor메소드 들어옴");
+        yield return new WaitForSeconds(time);
+        this.gameObject.GetComponent<Safe>().enabled = false;
+        
+
+    }
     public void IncreaseNumber(int _number)
     {
         if (_number == 1)

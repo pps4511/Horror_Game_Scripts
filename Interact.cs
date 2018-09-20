@@ -67,6 +67,13 @@ public class Interact : MonoBehaviour {
 
                     }
 
+                    else if (hit.collider.CompareTag("Password"))
+                    {
+                        hit.collider.GetComponent<Password>().ShowPasswordImage();
+
+                    }
+
+
                     else if (hit.collider.CompareTag("Cross"))
                     {
                         hit.collider.GetComponent<CrossPickUp>().PickupCross();
